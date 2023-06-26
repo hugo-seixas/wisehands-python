@@ -15,6 +15,8 @@ def obter_nivel_dificuldade():
             print("Nível inválido. Escolha novamente.")
 
 def adivinhar_numero(numero_secreto, max_tentativas):
+    pontuacao = 1000
+    
     for tentativas in range(1, max_tentativas + 1):
         print("Tentativa {} de {}".format(tentativas, max_tentativas))
         
@@ -26,11 +28,17 @@ def adivinhar_numero(numero_secreto, max_tentativas):
         
         if palpite == numero_secreto:
             print("Parabéns! Você acertou o número em", tentativas, "tentativas!")
+            print("Pontuação final: {}".format(pontuacao))
             return True
         
+        diferenca = abs(palpite - numero_secreto)
+        pontuacao -= diferenca
+        
         print("Tente um número", "maior!" if palpite < numero_secreto else "menor!")
+        print("Pontuação atual: {}".format(pontuacao))
     
     print("Você excedeu o número máximo de tentativas. O número secreto era", numero_secreto)
+    print("Pontuação final: {}".format(pontuacao))
     return False
 
 def jogar_adivinhacao():
